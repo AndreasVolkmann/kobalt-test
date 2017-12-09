@@ -6,9 +6,9 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.*
 import java.util.Random
 
-class Setup(kodein: Kodein) {
+class DatabaseSetup(kodein: Kodein) {
 
-    val profileSource: ProfileSource = kodein.instance()
+    private val profileSource: ProfileSource = kodein.instance()
 
     init {
         val host: String = kodein.instance("db.host")

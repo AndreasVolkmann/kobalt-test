@@ -5,7 +5,6 @@ import com.example.util.*
 import com.github.salomonbrys.kodein.*
 
 fun makeProductionModule() = Kodein.Module {
-    //bind<Setup>() with singleton { Setup(this) }
     bind<ProfileSource>() with singleton { ProfileSourceImpl() }
 
     constantProperty("db.host")
