@@ -1,0 +1,1 @@
+export const defaultImgUrl = "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png";

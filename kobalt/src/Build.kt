@@ -1,10 +1,16 @@
 import com.beust.kobalt.*
-import com.beust.kobalt.plugin.packaging.*
 import com.beust.kobalt.plugin.application.*
-import com.beust.kobalt.plugin.kotlin.*
+import com.beust.kobalt.plugin.packaging.*
 
-val kotlinVersion = "1.1.60"
+val kotlinVersion = "1.2.0"
 val ktorVersion = "0.9.0"
+val exposedVersion = "0.9.1"
+val h2Version = "1.4.196"
+val kodeinVersion = "4.1.0"
+val logbackVersion = "1.2.3"
+val junitVersion = "5.0.2"
+val kluentVersion = "1.30"
+
 
 val p = project {
     name = "wanted"
@@ -26,22 +32,29 @@ val p = project {
 
         compile("io.ktor:ktor-server-core:$ktorVersion")
         compile("io.ktor:ktor-server-netty:$ktorVersion")
+        compile("io.ktor:ktor-gson:$ktorVersion")
+        compile("org.jetbrains.exposed:exposed:$exposedVersion")
+        compile("com.github.salomonbrys.kodein:kodein:$kodeinVersion")
 
-        compile("com.h2database:h2:1.4.196")
-
+        compile("com.h2database:h2:$h2Version")
+        compile("ch.qos.logback:logback-classic:$logbackVersion")
 
     }
 
     dependenciesTest {
-        compile("org.testng:testng:6.11")
+        compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+        compile("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+        compile("org.amshove.kluent:kluent:$kluentVersion")
+        compile("io.ktor:ktor-server-test-host:$ktorVersion")
     }
 
     assemble {
-        jar {
-        }
+        jar {}
     }
 
     application {
         mainClass = "com.example.MainKt"
     }
 }
+
+
