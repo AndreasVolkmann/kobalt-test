@@ -17,7 +17,6 @@ export default class App extends Component {
                     <Switch>
 
                         <Route path="/" component={UserList} exact/>
-                        <Route path="/skill" component={Skill}/>
                         <Route path="/skill/:id" component={Skill}/>
                         <Route path="/profiles/:id" component={Profile}/>
 

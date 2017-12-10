@@ -6,6 +6,7 @@ import com.github.salomonbrys.kodein.*
 
 fun makeProductionModule() = Kodein.Module {
     bind<ProfileSource>() with singleton { ProfileSourceImpl() }
+    bind<SkillSource>() with singleton { SkillSourceImpl() }
 
     constantProperty("db.host")
     constantProperty("db.database")

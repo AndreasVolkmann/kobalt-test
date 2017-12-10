@@ -20,7 +20,6 @@ const AppLayout = ({children, location}) => {
             </span>
             <Menu mode="horizontal" style={{lineHeight: '64px'}} theme="dark" selectedKeys={[active]}>
                 <Menu.Item key="/"><NavLink to="/">Users</NavLink></Menu.Item>
-                <Menu.Item key="/skill"><NavLink to="/skill">Skills</NavLink></Menu.Item>
             </Menu>
         </Header>
         <Layout>

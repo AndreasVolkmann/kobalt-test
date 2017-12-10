@@ -2,6 +2,7 @@ package com.example.server
 
 import com.example.persistence.*
 import com.example.server.routes.*
+import com.example.util.*
 import com.github.salomonbrys.kodein.*
 import io.ktor.application.*
 import io.ktor.http.*
@@ -24,9 +25,20 @@ fun Routing.setup(kodein: Kodein) {
         }
 
         get("{id}") {
-            val id = call.parameters["id"]!!.toInt()
+            val id = call.getId()
             val profile = profileSource.getProfile(id)
             call.respond(profile)
+        }
+
+    }
+
+    route("skills") {
+        val skillSource: SkillSource = kodein.instance()
+        
+        get("{id}") {
+            val id = call.getId()
+            val skill = skillSource.get(id)
+            call.respond(skill)
         }
 
     }
