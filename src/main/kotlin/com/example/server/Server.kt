@@ -10,7 +10,7 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
 fun setupServer(kodein: Kodein) = embeddedServer(Netty, 5080) {
-    DatabaseSetup(kodein)
+    DatabaseSetup(kodein).insertBaseData()
     install(CallLogging)
     install(ContentNegotiation) {
         gson { }

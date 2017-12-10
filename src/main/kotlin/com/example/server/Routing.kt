@@ -19,7 +19,14 @@ fun Routing.setup(kodein: Kodein) {
 
         get {
             val profiles = profileSource.getProfiles(10, 0)
+            println(profiles)
             call.respond(profiles)
+        }
+
+        get("{id}") {
+            val id = call.parameters["id"]!!.toInt()
+            val profile = profileSource.getProfile(id)
+            call.respond(profile)
         }
 
     }

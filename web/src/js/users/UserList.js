@@ -3,14 +3,21 @@ import {Card, List, Avatar} from "antd"
 import DemoProfiles from "../data/DemoProfiles";
 import {NavLink} from "react-router-dom";
 import {defaultImgUrl} from "../util/utilities";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
+import * as ProfileActions from "../reducers/profiles"
 import {ProfileAvatar} from "../profile/ProfileAvatar";
 
-export default class UserList extends React.Component {
+class UserList extends React.Component {
+
+    componentDidMount() {
+        this.props.fetchProfiles()
+    }
 
     render() {
-        const profiles = DemoProfiles;
+        const {profiles, fetchingProfiles} = this.props;
         return <Card title="Users">
-            <List itemLayout="horizontal" dataSource={profiles} renderItem={profile => (
+            <List itemLayout="horizontal" dataSource={profiles} loading={fetchingProfiles} renderItem={profile => (
                 <List.Item>
                     <NavLink to={`/profiles/${profile.id}`}>
                         <List.Item.Meta avatar={<ProfileAvatar profile={profile} />} title={profile.name}/>
@@ -23,3 +30,14 @@ export default class UserList extends React.Component {
     }
 
 }
+
+const mapStateToProps = state => ({
+    profiles: state.profiles.profiles,
+    fetchingProfiles: state.profiles.fetchingProfiles
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchProfiles: bindActionCreators(ProfileActions, dispatch).fetchProfiles
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserList)

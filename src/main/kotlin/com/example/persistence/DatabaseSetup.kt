@@ -18,10 +18,10 @@ class DatabaseSetup(kodein: Kodein) {
                 driver = kodein.instance("db.driver"),
                 user = kodein.instance("db.user"),
                 password = kodein.instance("db.pass"))
-        insertBaseData()
     }
 
     fun insertBaseData() = transaction {
+        SchemaUtils.drop(*tables)
         SchemaUtils.create(*tables)
         val profiles = listOf(
                 Profile(null, "Andreas Volkmann", null),
@@ -36,17 +36,16 @@ class DatabaseSetup(kodein: Kodein) {
 
         val random = Random(1)
 
-        fun getProfileId() = profiles[random.nextInt(profiles.lastIndex)].id
-        (0..100).map {
-            val skill = skills[random.nextInt(skills.lastIndex)]
+        fun getProfileId() = profiles[random.nextInt(profiles.size)].id
+        (0..50).map {
+            val skill = skills[random.nextInt(skills.size)]
             val target = getProfileId()
             var source = getProfileId()
             while (source == target) {
                 source = getProfileId()
             }
             Endorsement(skill, target!!, source!!)
-        }.forEach(profileSource::endorse)
-
+        }.distinct().forEach(profileSource::endorse)
 
     }
 

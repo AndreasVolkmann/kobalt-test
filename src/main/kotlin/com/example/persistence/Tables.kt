@@ -25,4 +25,7 @@ object ProfileSkills : Table("profile_skills") {
 object Endorsements : Table("endorsements") {
     val skillId = integer("skill_id") references ProfileSkills.id
     val endorserId = integer("endorser_id") references Profiles.id
+    init {
+        uniqueIndex(skillId, endorserId)
+    }
 }
