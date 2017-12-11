@@ -33,10 +33,13 @@ val p = project {
         compile("io.ktor:ktor-server-core:$ktorVersion")
         compile("io.ktor:ktor-server-netty:$ktorVersion")
         compile("io.ktor:ktor-gson:$ktorVersion")
+        compile("io.ktor:ktor-auth:$ktorVersion")
         compile("org.jetbrains.exposed:exposed:$exposedVersion")
         compile("com.github.salomonbrys.kodein:kodein:$kodeinVersion")
 
         compile("com.h2database:h2:$h2Version")
+        compile("com.auth0:java-jwt:3.3.0")
+        compile("org.mindrot:jbcrypt:0.4")
         compile("ch.qos.logback:logback-classic:$logbackVersion")
 
     }

@@ -8,7 +8,9 @@ interface ProfileSource {
 
     fun getProfile(id: Int): Profile
 
-    fun insert(profile: Profile): Profile
+    fun getProfile(email: String): Pair<Profile, String>?
+
+    fun insert(profile: Profile, password: String): Profile
 
     fun endorse(endorsement: Endorsement)
 

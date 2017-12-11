@@ -8,6 +8,8 @@ val tables = arrayOf(
 
 object Profiles : Table("profiles") {
     val id = integer("id").primaryKey().autoIncrement()
+    val email = varchar("email", 100)
+    val password = varchar("password", 255)
     val name = varchar("name", 100)
     val imgUrl = varchar("image_url", 254).nullable()
 }

@@ -1,4 +1,5 @@
 import axios from "axios"
+import {getConfig} from "../util/utilities";
 
 const initialState = {
     id: null,
@@ -29,7 +30,7 @@ const fetchSkillRec = skill => ({type: SKILL_FETCH, status: 1, skill});
 const fetchSkillErr = error => ({type: SKILL_FETCH, status: -1, error});
 export const fetchSkill = id => (dispatch, getState) => {
     dispatch(fetchSkillReq(id));
-    axios.get(`/skills/${id}`)
+    axios.get(`/api/skills/${id}`, getConfig(getState))
         .then(res => dispatch(fetchSkillRec(res.data)))
         .catch(err => dispatch(fetchSkillErr(err)))
 };

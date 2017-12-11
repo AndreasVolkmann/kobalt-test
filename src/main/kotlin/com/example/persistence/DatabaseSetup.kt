@@ -9,6 +9,7 @@ import java.util.Random
 class DatabaseSetup(kodein: Kodein) {
 
     private val profileSource: ProfileSource = kodein.instance()
+    private val loginSource: LoginSource = kodein.instance()
 
     init {
         val host: String = kodein.instance("db.host")
@@ -24,20 +25,20 @@ class DatabaseSetup(kodein: Kodein) {
         SchemaUtils.drop(*tables)
         SchemaUtils.create(*tables)
         val profiles = listOf(
-                Profile(null, "Andreas Volkmann", null),
-                Profile(null, "Robert Greene", "https://pbs.twimg.com/profile_images/2707261704/b1bb5b5e31154c07681959bcc7799bca_400x400.jpeg"),
-                Profile(null, "Fuminori Nakamura", "http://www.diogenes.ch/dam/Diogenes/Autorenportraits/Nakamura_700130235_beschnitten.jpg"),
-                Profile(null, "Mario Puzo", "https://upload.wikimedia.org/wikipedia/en/0/0c/Mario_Puzo.jpg"),
-                Profile(null, "Paul Auster", "http://paul-auster.com/images/paul-auster.jpg"),
-                Profile(null, "Hans Habe", "https://images.gr-assets.com/authors/1354134456p5/108377.jpg")
-        ).map(profileSource::insert)
+                Profile(null, "test1@example.com", "Andreas Volkmann", null),
+                Profile(null, "test2@example.com", "Robert Greene", "https://pbs.twimg.com/profile_images/2707261704/b1bb5b5e31154c07681959bcc7799bca_400x400.jpeg"),
+                Profile(null, "test3@example.com", "Fuminori Nakamura", "http://www.diogenes.ch/dam/Diogenes/Autorenportraits/Nakamura_700130235_beschnitten.jpg"),
+                Profile(null, "test4@example.com", "Mario Puzo", "https://upload.wikimedia.org/wikipedia/en/0/0c/Mario_Puzo.jpg"),
+                Profile(null, "test5@example.com", "Paul Auster", "http://paul-auster.com/images/paul-auster.jpg"),
+                Profile(null, "test6@example.com", "Hans Habe", "https://images.gr-assets.com/authors/1354134456p5/108377.jpg")
+        ).map { loginSource.signup(it, "test") }
 
         val skills = listOf("Kotlin", "React", "Writing", "イラスト", "Entrepreneurship", "Startup", "UXデザイン", "リーダシップ", "面白い")
 
         val random = Random(1)
 
         fun getProfileId() = profiles[random.nextInt(profiles.size)].id
-        (0..50).map {
+        (0..100).map {
             val skill = skills[random.nextInt(skills.size)]
             val target = getProfileId()
             var source = getProfileId()

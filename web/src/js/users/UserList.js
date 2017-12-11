@@ -1,8 +1,6 @@
 import React from "react"
-import {Card, List, Avatar} from "antd"
-import DemoProfiles from "../data/DemoProfiles";
+import {Card, List} from "antd"
 import {NavLink} from "react-router-dom";
-import {defaultImgUrl} from "../util/utilities";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import * as ProfileActions from "../reducers/profiles"
@@ -20,7 +18,7 @@ class UserList extends React.Component {
             <List itemLayout="horizontal" dataSource={profiles} loading={fetchingProfiles} renderItem={profile => (
                 <List.Item>
                     <NavLink to={`/profiles/${profile.id}`}>
-                        <List.Item.Meta avatar={<ProfileAvatar profile={profile} />} title={profile.name}/>
+                        <List.Item.Meta avatar={<ProfileAvatar profile={profile}/>} title={profile.name}/>
                     </NavLink>
                 </List.Item>
             )}
