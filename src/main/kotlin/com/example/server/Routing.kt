@@ -8,6 +8,7 @@ import com.example.util.*
 import com.github.salomonbrys.kodein.*
 import io.ktor.application.*
 import io.ktor.auth.*
+import io.ktor.auth.jwt.*
 import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*

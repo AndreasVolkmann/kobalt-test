@@ -3,7 +3,7 @@ import com.beust.kobalt.plugin.application.*
 import com.beust.kobalt.plugin.packaging.*
 
 val kotlinVersion = "1.2.0"
-val ktorVersion = "0.9.0"
+val ktorVersion = "0.9.1-alpha-8"
 val exposedVersion = "0.9.1"
 val h2Version = "1.4.196"
 val kodeinVersion = "4.1.0"
@@ -33,7 +33,7 @@ val p = project {
         compile("io.ktor:ktor-server-core:$ktorVersion")
         compile("io.ktor:ktor-server-netty:$ktorVersion")
         compile("io.ktor:ktor-gson:$ktorVersion")
-        compile("io.ktor:ktor-auth:$ktorVersion")
+        compile("io.ktor:ktor-auth-jwt:$ktorVersion")
         compile("org.jetbrains.exposed:exposed:$exposedVersion")
         compile("com.github.salomonbrys.kodein:kodein:$kodeinVersion")
 
